@@ -1,7 +1,7 @@
 #ifndef FLOARE_H
 #define FLOARE_H
 #include <string>
-
+#include <iostream>
 
 //interfata 
 //avem planta la modul general care are cateva lucruri valabile indiferent de tip
@@ -56,7 +56,7 @@ public:
 
     //DESTRUCTOR
     //destructor virtual deoarece avem resurse alocate dinamic si este foarte important
-    virtual ~Floare() {delete boboci;};
+    virtual ~Floare();
 };
 
 

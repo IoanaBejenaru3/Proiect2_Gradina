@@ -114,3 +114,12 @@ void Floare::AfisareInformatii() const
 {
     std::cout << "Florile sunt cunoscute pentru frumusețea, culorile și parfumurile lor, având o importanță biologică, estetică și culturală semnificativă.";
 }
+
+
+//DESTRUCTOR
+
+Floare::~Floare()
+{
+    delete []boboci;
+    std::cout << "~Floare\n";
+}

@@ -14,7 +14,7 @@ public:
     
 
     //FUNCTII
-    void Descrie() const override;
+    void Descrie(std::ostream& os) const override;
     //functie specifica acestei derivate, deci va aparea dynamic_cast
     void Atentioneaza();
 

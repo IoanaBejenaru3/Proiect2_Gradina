@@ -1,6 +1,5 @@
 #ifndef FLOARE_H
 #define FLOARE_H
-
 #include <string>
 
 
@@ -16,7 +15,8 @@ class Planta{
 class Floare : public Planta{
 private:
     std::string denumire;
-    Floare *boboci;
+    //aici vom tine gradul de "inflorire", doar daca avem bobocul > grad_inflorire vom planta bobocul
+    int *boboci;
     int numar_boboci;
     int durata_viata;
     std::string culoare;
@@ -27,15 +27,17 @@ public:
     //constructor de copiere
     Floare(const Floare& other);
     //constructor de mutare
-    Floare(const Floare&& other);
+    Floare(Floare&& other) noexcept;
 
+    //GETTEERS
+    std::string GetDenumire();
     //OPERATORI
     //operator de afisare pentru o floare
     friend std::ostream& operator<<(std::ostream& os, const Floare& floare);
     //operator de atribuire prin copiere
     Floare& operator=(const Floare& other);
     //operator de atribuire prin mutare
-    Floare& operator=(const Floare&& other);
+    Floare& operator=(Floare&& other);
 
     //FUNCTII OVERRIDE
     //spunem la general ce este o floare
@@ -43,7 +45,7 @@ public:
 
     //FUNCTII VIRTUALE PURE
     //descriem pe scurt floarea specifica (derivata)
-    virtual void Descrie() const = 0;
+    virtual void Descrie(std::ostream& os) const = 0;
 
     //FUNCTII VIRTUALE
     

@@ -34,8 +34,20 @@ Gradina& Gradina::operator=(const Gradina& other)
     return *this;
 }
 
-/*void Gradina::AdaugaFloare(const Floare& floare)
+void Gradina::AdaugaFloare(Floare& floare)
 {
-    //adaugam un numar de flori in gradina
-    flori.push_back(&floare);
-}*/
+    flori.push_back(floare);
+}
+void Gradina::VerificaGradina()
+{
+    std::vector <int> flori_ofilite;
+    int size = flori.size();
+    for(int i =0; i < size; i++)
+        if(Gradina::ziua_curenta - flori[i].GetZiPlantare() + 1 == flori[i].GetDurataViata())
+        {
+            //inseamna ca scoatem floarea din gradina deoarece e ofilita
+            flori_ofilite.push_back(i); //pastram poziia si dupa vom scoate din vector
+            //dupa ce am scos-o de asiguram ca bobocii ei (care au "gradul de plantare" bun adica numerele memorate in boboci) sunt plantati in gradina
+            // if( )
+        }
+}

@@ -4,7 +4,7 @@
 //CONSTRUCTORI
 
 //constructor
-Floare::Floare(std::string denumire_, const int numar_boboci_, const int durata_viata_, std::string culoare_) : denumire{denumire_}, numar_boboci{numar_boboci_}, durata_viata{durata_viata_}, culoare{culoare_}
+Floare::Floare(std::string denumire_, const int numar_boboci_, const int durata_viata_, const int zi_plantare_, std::string culoare_) : denumire{denumire_}, numar_boboci{numar_boboci_}, durata_viata{durata_viata_}, zi_plantare{zi_plantare_}, culoare{culoare_}
 {
     if(numar_boboci_ == 0)
         boboci = nullptr;
@@ -13,7 +13,7 @@ Floare::Floare(std::string denumire_, const int numar_boboci_, const int durata_
 }
 
 //constructor de copiere
-Floare::Floare(const Floare& other) : denumire{other.denumire}, numar_boboci{other.numar_boboci}, durata_viata{other.durata_viata}, culoare{other.culoare}
+Floare::Floare(const Floare& other) : denumire{other.denumire}, numar_boboci{other.numar_boboci}, durata_viata{other.durata_viata},zi_plantare{other.zi_plantare}, culoare{other.culoare}
 {
     //acum trebuie sa ne asiguram ca facem copierea resurselor alocate dinamic corect
     //trebuie doar sa copiem nu sa si stergem
@@ -32,11 +32,12 @@ Floare::Floare(const Floare& other) : denumire{other.denumire}, numar_boboci{oth
 //explicatii???: cand vine vorba de constructorul de mutare ma gandesc asa: eu nu am nimic in obiectul in care vreau sa mut
 //               de unde si "construirea" acestuia, asadar, mutam resursele din other in ob curent SI NU VREM SA ELIBERAM MEMORIA deoarece acum ob curent va "pointa" spre ele (resursele alocate dinamic)
 //               de asta nu eliberam nimic la constructori
-Floare::Floare(Floare&& other) noexcept:  denumire{other.denumire}, numar_boboci{other.numar_boboci}, durata_viata{other.durata_viata}, culoare{other.culoare}, boboci{other.boboci}
+Floare::Floare(Floare&& other) noexcept:  denumire{other.denumire}, numar_boboci{other.numar_boboci}, durata_viata{other.durata_viata}, zi_plantare{other.zi_plantare}, culoare{other.culoare}, boboci{other.boboci}
 {
     other.denumire = "";
     other.durata_viata = 0;
     other.numar_boboci = 0;
+    other.zi_plantare = 0;
     other.culoare = "";
     other.boboci = nullptr;
 }
@@ -46,6 +47,16 @@ Floare::Floare(Floare&& other) noexcept:  denumire{other.denumire}, numar_boboci
 std::string Floare::GetDenumire()
 {
     return this->denumire;
+}
+
+int Floare::GetZiPlantare()
+{
+    return this->zi_plantare;
+}
+
+int Floare::GetDurataViata()
+{
+    return this->durata_viata;
 }
 
 //OPERATORI
@@ -72,6 +83,7 @@ Floare& Floare::operator=(const Floare &other)
         //aveam alocat dinamic trebuie eliberat pentru a evita memory leaks
         denumire = other.denumire;
         numar_boboci = other.numar_boboci;
+        zi_plantare = other.zi_plantare;
         if(boboci != nullptr) //daca avem ceva alocat
             delete []boboci;
         boboci = new int[numar_boboci]; //alocam atata spatiu cat este si in other
@@ -98,7 +110,10 @@ Floare& Floare::operator=(Floare&& other)
         other.numar_boboci = 0;
         durata_viata = other.durata_viata;
         other.durata_viata = 0;
+        zi_plantare = other.zi_plantare;
+        other.zi_plantare = 0;
         culoare = other.culoare;
+        other.culoare = "";
         //acum ne ocupam de resursele alocate dinamic din cadrul obiectului in care vrem sa mutam
         delete []boboci; //ne asiguram ca eliberam zona de memorie
         boboci = other.boboci;

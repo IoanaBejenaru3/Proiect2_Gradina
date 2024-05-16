@@ -19,11 +19,12 @@ private:
     int *boboci;
     int numar_boboci;
     int durata_viata;
+    int zi_plantare;
     std::string culoare;
 public:
     //CONSTRUCTORI
     //constructor
-    Floare(std::string denumire_ = "", const int numar_boboci_ = 0, const int durata_viata_ = 0, std::string culoare_ = "");
+    Floare(std::string denumire_ = "", const int numar_boboci_ = 0, const int durata_viata_ = 0, const int zi_plantare_ = 0, std::string culoare_ = "");
     //constructor de copiere
     Floare(const Floare& other);
     //constructor de mutare
@@ -31,6 +32,8 @@ public:
 
     //GETTEERS
     std::string GetDenumire();
+    int GetZiPlantare();
+    int GetDurataViata();
     //OPERATORI
     //operator de afisare pentru o floare
     friend std::ostream& operator<<(std::ostream& os, const Floare& floare);

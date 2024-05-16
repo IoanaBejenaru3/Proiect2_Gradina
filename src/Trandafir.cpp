@@ -30,5 +30,13 @@ void Trandafir::Descrie(std::ostream& os) const
 
 void Trandafir::Atentioneaza() const
 {
-    std::cout << "ATENTIE! Nu te intepa in spini! \n";
+    if(numar_spini != 0)
+        std::cout << "ATENTIE! Nu te intepa in spini! \n";
+}
+
+//DESTRUCTOR
+
+Trandafir::~Trandafir()
+{
+    std::cout << "~Trandafir\n";
 }

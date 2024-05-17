@@ -14,6 +14,8 @@ private:
     //precum gradina de flori (pe care se bazeaza proiectul), gradina de legume, de pomi(nu voi implementa in cadrul acestui proiect)
     //si ideea este ca indiferent de gradina zilele care trec sunt aceleasi pentru toate (ca sa stim cand "dau roadele =)")
     static int ziua_curenta;
+    //in functie de pamantul pe care il avem in gradina stim cat de "fertil" e
+    static int grad_inflorire;
 public:
     //CONSTRUCTORI
     Gradina(std::vector <Floare&> flori_);

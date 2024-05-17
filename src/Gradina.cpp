@@ -1,9 +1,12 @@
 #include "../include/Gradina.h"
-
+#include "../include/Trandafir.h"
+#include "../include/Bujor.h"
 //STATICE
 
 //variabila statica
 int Gradina::ziua_curenta = 0;
+//un numar aleatoriu
+int Gradina::grad_inflorire = 3;
 
 //functia statica
 void Gradina::TreceZiua()
@@ -48,6 +51,17 @@ void Gradina::VerificaGradina()
             //inseamna ca scoatem floarea din gradina deoarece e ofilita
             flori_ofilite.push_back(i); //pastram poziia si dupa vom scoate din vector
             //dupa ce am scos-o de asiguram ca bobocii ei (care au "gradul de plantare" bun adica numerele memorate in boboci) sunt plantati in gradina
-            // if( )
-        }
+            try
+            {
+                Trandafir& t = dynamic_cast<Trandafir&>(flori[i]);
+                t.Atentioneaza();
+            } 
+            // catch (const std::bad_cast& error){}
+            // try
+            // {
+            //     Bujor& t = dynamic_cast<Bujor&>(flori[i]);
+                
+            // } 
+            // catch (const std::bad_cast& error)
+        }    
 }

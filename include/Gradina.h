@@ -8,7 +8,7 @@
 
 class Gradina{
 private:
-    std::vector <Floare&> flori;
+    std::vector <Floare*> flori;
     //variabila statica care simuleaza trecerea zilelor ca in viata reala
     //am facut-o statica deoarece exista mai multe tipuri de gradini in curtea unui om 
     //precum gradina de flori (pe care se bazeaza proiectul), gradina de legume, de pomi(nu voi implementa in cadrul acestui proiect)
@@ -18,18 +18,24 @@ private:
     static int grad_inflorire;
 public:
     //CONSTRUCTORI
-    Gradina(std::vector <Floare&> flori_);
+    Gradina(std::vector <Floare*> flori_);
     //constructor de copiere
     Gradina(const Gradina& other);
+    //constructor de mutare
+    Gradina(Gradina&& other) noexcept;
+
     //GETTERS
     static int GetZiuaCurenta();
 
     //OPERATORI
+    //operator de atribuire prin copiere
     Gradina& operator=(const Gradina& other);
+    //operator de atribuire prin mutare
+    Gradina& operator=(Gradina&& other);
 
     //FUNCTII
     static void TreceZiua();
-    void AdaugaFloare(Floare& floare);
+    void AdaugaFloare(Floare* floare);
     //verificam daca in gradina mai avem flori in viata
     //daca nu avem grija sa o scoatem din vector ca si cum "ar fi murit" si sa plantam bobocii ei la loc in gradina
     void VerificaGradina();

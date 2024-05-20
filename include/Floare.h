@@ -13,7 +13,7 @@ class Planta{
 //avem floare care este neinstantiabila in gradina noastra pentru ca nu stim ce fel de flaore e
 
 class Floare : public Planta{
-private:
+protected: //avem nevoie de ele in derivate si pentru a evita definirea multor getters le facem protected
     std::string denumire;
     //aici vom tine gradul de "inflorire", doar daca avem bobocul > grad_inflorire vom planta bobocul
     int *boboci;

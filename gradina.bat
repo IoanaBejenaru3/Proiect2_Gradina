@@ -1,10 +1,11 @@
-@REM @echo off
-g++ -c -o obj/Cofetarie.o src/Cofetarie.cpp
-g++ -c -o obj/Produs.o src/Produs.cpp
-g++ -c -o obj/Client.o src/Client.cpp
-g++ -c -o obj/Comanda.o src/Comanda.cpp
+@rem
+@echo off
+g++ -c -o obj/Gradina.o src/Gradina.cpp
+g++ -c -o obj/Floare.o src/Floare.cpp
+g++ -c -o obj/Bujor.o src/Bujor.cpp
+g++ -c -o obj/Trandafir.o src/Trandafir.cpp
 g++ -c -o main.o main.cpp
-g++ -o main main.o obj/Cofetarie.o obj/Produs.o obj/Comanda.o obj/Client.o -g
-@REM main.exe < input.txt
-@REM pause
-@REM @echo on
+g++ -o main main.o obj/Gradina.o obj/Floare.o obj/Bujor.o obj/Trandafir.o -g
+main.exe
+pause
+@echo on

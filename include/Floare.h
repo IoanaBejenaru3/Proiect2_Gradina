@@ -3,10 +3,14 @@
 #include <string>
 #include <iostream>
 
+//clasa de baza va implementa regula celor 5
+//iar derivatele vor implementa regula celor 3
+
 //interfata 
 //avem planta la modul general care are cateva lucruri valabile indiferent de tip
 class Planta{
     virtual void AfisareInformatii() const= 0;
+    //virtual void Descrie() const = 0;
 };
 
 //clasa abstracta
@@ -20,11 +24,10 @@ protected: //avem nevoie de ele in derivate si pentru a evita definirea multor g
     int numar_boboci;
     int durata_viata;
     int zi_plantare;
-    std::string culoare;
 public:
     //CONSTRUCTORI
     //constructor
-    Floare(std::string denumire_ = "", const int numar_boboci_ = 0, const int durata_viata_ = 0, const int zi_plantare_ = 0, std::string culoare_ = "");
+    Floare(std::string denumire_ = "", const int numar_boboci_ = 0, const int durata_viata_ = 0, const int zi_plantare_ = 0);
     //constructor de copiere
     Floare(const Floare& other);
     //constructor de mutare
@@ -34,6 +37,9 @@ public:
     std::string GetDenumire();
     int GetZiPlantare();
     int GetDurataViata();
+
+    //SETTERS
+
     //OPERATORI
     //operator de afisare pentru o floare
     friend std::ostream& operator<<(std::ostream& os, const Floare& floare);
@@ -44,18 +50,19 @@ public:
 
     //FUNCTII OVERRIDE
     //spunem la general ce este o floare
-    void AfisareInformatii() const override;
+    virtual void AfisareInformatii() const override; //implementeaza o functie a interfetei
 
     //FUNCTII VIRTUALE PURE
     //descriem pe scurt floarea specifica (derivata)
-    virtual void Descrie(std::ostream& os) const = 0;
+    virtual void Descrie(std::ostream& os) const = 0; //nu impementeaza functia interfetei inca, ulterior in derivate
 
     //FUNCTII VIRTUALE
     
 
     //FUNCTII "NORMALE"
     void IncrementeazaBoocii(const int numar);
-    
+    //aflam cati boboci sunt viabili
+    int FloriDePlantat(const int numar);
 
     //DESTRUCTOR
     //destructor virtual deoarece avem resurse alocate dinamic si este foarte important

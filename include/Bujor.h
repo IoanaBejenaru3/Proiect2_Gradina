@@ -5,8 +5,11 @@
 class Bujor : public Floare{
 public:
     //CONSTRUCTORI
-    Bujor(std::string denumire_ = "", const int numar_boboci_ = 0, const int durata_viata_ = 0, const int zi_plantare_ = 0, std::string culoare_ = "");
+    Bujor(std::string denumire_ = "", const int numar_boboci_ = 0, const int durata_viata_ = 0, const int zi_plantare_ = 0);
     Bujor(const Bujor& other);
+
+    //GETTERS
+    //SETTERS
 
     //OPERATORI
     Bujor& operator=(const Bujor& other);

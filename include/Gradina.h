@@ -1,7 +1,8 @@
 #ifndef GRADINA_H
 #define GRADINA_H
-#include "floare.h"
+#include "Floare.h"
 #include <vector>
+
 
 //pentru aceasta clasa nu voi implementa regula celor 5 deoarece am resurse alocate dinamic
 //dar voi implementa regula celor 3 pentru a repeta notiunile invatate
@@ -18,7 +19,7 @@ private:
     static int grad_inflorire;
 public:
     //CONSTRUCTORI
-    Gradina(std::vector <Floare*> flori_);
+    Gradina(std::vector <Floare*> flori_ = {});
     //constructor de copiere
     Gradina(const Gradina& other);
     //constructor de mutare
@@ -26,6 +27,8 @@ public:
 
     //GETTERS
     static int GetZiuaCurenta();
+
+    //SETTERS
 
     //OPERATORI
     //operator de atribuire prin copiere

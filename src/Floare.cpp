@@ -139,6 +139,11 @@ int Floare::FloriDePlantat(const int numar)
     return ct;
 }
 
+void Floare::MesajPlantareBoboci() const
+{
+    std::cout << "Am plantat bobocii!\n";
+}
+
 //DESTRUCTOR
 
 Floare::~Floare()

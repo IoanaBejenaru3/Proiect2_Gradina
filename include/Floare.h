@@ -60,9 +60,9 @@ public:
     
 
     //FUNCTII "NORMALE"
-    void IncrementeazaBoocii(const int numar);
     //aflam cati boboci sunt viabili
     int FloriDePlantat(const int numar);
+    void MesajPlantareBoboci() const;
 
     //DESTRUCTOR
     //destructor virtual deoarece avem resurse alocate dinamic si este foarte important

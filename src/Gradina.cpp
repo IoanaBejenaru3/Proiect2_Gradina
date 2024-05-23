@@ -71,16 +71,16 @@ void Gradina::VerificaGradina()
     std::vector <int> flori_ofilite;
     int size = flori.size();
     std::cout << size << std::endl;
-    for(int i =0; i < size; i++)
-        if(Gradina::ziua_curenta - flori[i]->GetZiPlantare() == flori[i]->GetDurataViata())
+    for(int i =0; i < size; i++) //verific doar florile care erau deja plantate nu si bobocii pe care ii plantam
+        if(Gradina::ziua_curenta - flori[i]->GetZiPlantare() >= flori[i]->GetDurataViata())
         {
             //inseamna ca scoatem floarea din gradina deoarece e ofilita
             flori_ofilite.push_back(i); //pastram poziia si dupa vom scoate din vector
-            //dupa ce am scos-o de asiguram ca bobocii ei (care au "gradul de plantare" bun adica numerele memorate in boboci) sunt plantati in gradina
+            //dupa ce am scos-o ne asiguram ca bobocii (care au "gradul de plantare" bun adica numerele memorate in boboci) sunt plantati in gradina
             Trandafir* t;
             Bujor* b;
             FloareaSoarelui * fs;
-            int ct = flori[i]->FloriDePlantat(Gradina::grad_inflorire);
+            int ct = flori[i]->FloriDePlantat(Gradina::grad_inflorire); //aflam cati boboci plantam
             if((t = dynamic_cast<Trandafir*>(flori[i])) != nullptr)
             {
                 t->Atentioneaza();
@@ -89,14 +89,16 @@ void Gradina::VerificaGradina()
                     Floare* floare= new Trandafir("trandafir",rand() % 4,10,Gradina::ziua_curenta,rand() % 8);
                     flori.push_back(floare);
                 }
+                if(ct != 0) t->MesajPlantareBoboci();
             }
             else if((b = dynamic_cast<Bujor*>(flori[i])) != nullptr)
             {
                 for(int k = 0; k < ct; k++)
                 {
-                    Floare* floare= new Bujor("bujor",rand() % 2,7,Gradina::ziua_curenta);
+                    Floare* floare= new Bujor("bujor",rand() % 2,7,Gradina::ziua_curenta,0);
                     flori.push_back(floare);
                 }
+                 if(ct != 0) b->MesajPlantareBoboci();
             }
             else if((fs = dynamic_cast<FloareaSoarelui*>(flori[i])) != nullptr)
             {
@@ -106,6 +108,7 @@ void Gradina::VerificaGradina()
                     Floare* floare= new FloareaSoarelui("floarea_soarelui",rand() % 4,8,Gradina::ziua_curenta,rand() % 100);
                     flori.push_back(floare);
                 }
+                 if(ct != 0) fs->MesajPlantareBoboci();
             }
             else
                 std::cout << "Nu exista o astfel de floare in gradina\n";
@@ -114,7 +117,14 @@ void Gradina::VerificaGradina()
         {
             Bujor* b;
             if((b = dynamic_cast<Bujor*>(flori[i])) != nullptr)
-                b->PuneIngrasamant();
+                try
+                {
+                    b->PuneIngrasamant();
+                }
+                catch (const std::logic_error& l)
+                {
+                    std::cerr << "Exceptie prinsa: " << l.what();
+                }
             
         }  
     //ne asiguram ca scoatem florile ofilite din gradina

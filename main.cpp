@@ -23,7 +23,7 @@ int main()
     std::cout << *f2 << std::endl;
     Floare* f3 = new FloareaSoarelui("floarea_soarelui",2,8,0);
     std::cout << *f3 << std::endl;
-    Floare* f4 = new Bujor("bujor",2,7,0);
+    Floare* f4 = new Bujor("bujor",2,7,0,0);
 
     //plantam florile in gradina
     gradina.AdaugaFloare(f1);
